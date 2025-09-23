@@ -1,0 +1,12 @@
+head = head tag
+.red = class red
+#nav = nav id
+div.row = div tag + row class
+[variable="value"] = select element with attribute variable "value"
+oma kiddo = DESCENDANT: some descendant kiddo from oma
+oma > papa = CHILD: direct descendant papa from oma
+div.row * = all descendants from div tag + row class
+
+house + tree = NEXT SIBLING: first tree behind the house (having same parents)
+house, tree = all houses, all trees
+house ~ tree = SUBSEQUENT SIBLINGS: all trees behind the house (having same parent)

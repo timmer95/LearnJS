@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="title">MY LIBRARY</div>
+        <div id="display-book"></div>
+        <label for="select-book-id">Enter Book id: </label>
+        <select name="select-book-id" id="select-book-id" onchange="renderBook(value)">
+            <datalist id="all-book-ids"></datalist>
+        </select>
+        <dialog>
+        <form method="dialog">
+            <div class="dialog-div">
+                <span>Enter Book details:</span>
+                <div>
+                    <span>Title: </span>
+                    <input type="text" id="add-title"/>
+                </div>
+                <div>
+                    <span>Author: </span>
+                    <input type="text" id="add-author"/>
+                </div>
+                <div>
+                    <span>Pages: </span>
+                    <input type="number" id="add-pages"/>
+                </div>
+                <div class="button-div">
+                    <button id="add-book">Add</button>
+                    <button id="close-modal" class="secondary-button">Cancel</button>
+                </div>
+            </div>
+        </form>
+        </dialog>
+        <button id="show-modal">Add Book</button>
+    </div>
+   
+    <script src="js/the-script.js"></script>
+    <script src="js/functionality.js"></script>
+</body>
+</html>

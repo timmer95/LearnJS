@@ -1,0 +1,92 @@
+body { 
+    background-color: rgb(212, 205, 184);
+    font-family:fantasy;
+
+}
+
+.page-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.title {
+    font-size: 60px;
+    justify-self: center;
+    padding: 15px;
+    color: rebeccapurple;
+    text-shadow: 
+        2px 2px 0 white,
+        -2px 2px 0 white,
+        -2px -2px 0 white,
+        2px -2px 0 white;
+}
+
+.display {
+    background-color: whitesmoke;
+    height: 600px;
+    width: 400px;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px;
+    box-shadow: 5px 5px 5px 2px gray;
+    border: 1px solid gray;
+}
+
+.display .title {
+    font-size: 50px;
+}
+
+.display .author {
+    font-size: 25px;
+    font-style: italic;
+}
+
+.enter-book {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+button, .secondary-button {
+    background-color:rebeccapurple;
+    color: white;
+
+    font-weight: bold;
+    padding: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    box-shadow: 1px 2px 0 3px rgb(44, 22, 66);
+    transition: all 0.3s;
+}
+
+.secondary-button {
+    background-color: rgb(173, 173, 173);
+}
+
+
+button:hover {
+    background-color: rgb(133, 76, 190);
+}
+
+.dialog-div {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.button-div {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+dialog button {
+    width: 80px;
+}
