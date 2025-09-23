@@ -1,0 +1,14 @@
+<dialog id="myDialog">
+<form method="dialog">
+<p>This is a modal dialog!</p>
+<button>Close</button>
+</form>
+</dialog>
+<button id="openDialog">Open Dialog</button>
+<script>
+const dialog = document.getElementById('myDialog');
+const openDialogButton = document.getElementById('openDialog');
+openDialogButton.addEventListener('click', () => {
+dialog.showModal();
+});
+</script>
