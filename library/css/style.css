@@ -52,7 +52,7 @@ body {
     gap: 16px;
 }
 
-button, .secondary-button {
+button, .secondary-button, .warning-button {
     background-color:rebeccapurple;
     color: white;
 
@@ -68,6 +68,10 @@ button, .secondary-button {
 
 .secondary-button {
     background-color: rgb(173, 173, 173);
+}
+
+.warning-button {
+    background-color:brown;
 }
 
 

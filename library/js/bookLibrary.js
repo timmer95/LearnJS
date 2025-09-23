@@ -1,5 +1,3 @@
-
-
 function Book(id, title, author, pages, read) {
     if (!new.target) {
         throw Error("You must use the 'new' operator to call the constructor");
@@ -21,10 +19,9 @@ function Book(id, title, author, pages, read) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
-    let id = crypto.randomUUID()
-    let newBook = new Book(id, title, author, pages, read)
-    myLibrary.push(newBook)
-    return id;
+    let id = crypto.randomUUID();
+    let newBook = new Book(id, title, author, pages, read);
+    myLibrary.push(newBook);
 }
 
 let myLibrary = [
@@ -40,33 +37,56 @@ function renderBook(id) {
                                 <div class="title">${selectedBook.title}</div>
                                 <div class="author">${selectedBook.author}</div>
                                 <span>Pages: ${selectedBook.pages}</span>
-                                <span>Status: ${selectedBook.readPart()}</span>
+                                <div>
+                                    <span>Status: ${selectedBook.readPart()}</span>
+                                    <input type="checkbox">
+                                </div>
+                                <button class="warning-button" onclick="deleteBook()">Delete</button>
                             </div>`;
 };
+
+function removeItem(array, itemToRemove) {
+    const index = array.indexOf(itemToRemove);
+
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+
+    return array;
+}
+
+function deleteBook() {
+    let id = document.querySelector("#select-book-id").value;
+    let selectedBook = myLibrary.find(book => book.id == id);
+    myLibrary = removeItem(myLibrary, selectedBook);
+    populateList(myLibrary);
+    console.log(`Deleted book ${selectedBook.title}`)
+}
 
 const addBookButton = document.querySelector("#add-book");
 addBookButton.addEventListener("click", function() {
     let title = document.querySelector("#add-title").value;
     let author = document.querySelector("#add-author").value;
     let pages = document.querySelector("#add-pages").value;
-    let id = addBookToLibrary(title, author, pages, false);
-    let newOption = document.createElement("option");
-    newOption.innerHTML = id;
-    datalist.appendChild(newOption);
+    addBookToLibrary(title, author, pages, false);
+    populateList(myLibrary);
     console.log(`Added book ${title} by ${author} to library`);
 })
 
-// This is the datalist
 const datalist = document.getElementById('all-book-ids');
 
 function populateList(arr) {
-  arr.forEach(book => {
-    let bookId = book.id;
-    var option = document.createElement("option");
-    option.innerHTML = bookId;
-    datalist.appendChild(option);
+    
+    datalist.innerHTML = '';
+
+    arr.forEach(book => {
+        let bookId = book.id;
+        var option = document.createElement("option");
+        option.innerHTML = bookId;
+        datalist.appendChild(option);
   });
 }
 
-
-populateList(myLibrary);
+window.onload = function() {
+    populateList(myLibrary);
+};
