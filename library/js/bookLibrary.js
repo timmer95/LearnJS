@@ -16,6 +16,10 @@ function Book(id, title, author, pages, read) {
         this.read ? readPart = "already read" : readPart = "not read yet";
         return this.title, this.author, this.pages, readPart
     }
+
+    this.toggleReadStatus = function(bool) {
+        this.read = bool;
+    }
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -38,12 +42,22 @@ function renderBook(id) {
                                 <div class="author">${selectedBook.author}</div>
                                 <span>Pages: ${selectedBook.pages}</span>
                                 <div>
-                                    <span>Status: ${selectedBook.readPart()}</span>
-                                    <input type="checkbox">
+                                    <span id="read-status">Status: ${selectedBook.readPart()}</span>
+                                    <input type="checkbox" id="check-read" onchange="toggleBookReadStatus()">
                                 </div>
                                 <button class="warning-button" onclick="deleteBook()">Delete</button>
                             </div>`;
 };
+
+function toggleBookReadStatus() {
+    console.log("toggleBookReadStatus");
+    let bookId = document.querySelector("#select-book-id").value;
+    let bool = document.getElementById("check-read").checked;
+    let selectedBook = myLibrary.find(book => book.id == bookId);
+    selectedBook.toggleReadStatus(bool);
+    var readStatus = document.querySelector("#read-status");
+    readStatus.innerHTML = `<span id="read-status">Status: ${selectedBook.readPart()}</span>`
+}
 
 function removeItem(array, itemToRemove) {
     const index = array.indexOf(itemToRemove);
