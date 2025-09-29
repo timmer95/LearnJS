@@ -3,7 +3,7 @@ function createPlayer(symbol, name) {
     function getMove() {
         const moveFullString = prompt(`${name}, what will be your next move? (x, y) 0-based index`);
         // let moveFullString = "1 2"
-        const { xString, yString } = moveFullString.split(" ");
+        const [ xString, yString ] = moveFullString.split(" ");
         const x = Number(xString);
         const y = Number(yString);
 
@@ -37,20 +37,22 @@ function createGameboard(size) {
 
     function checkStatus() {
         const winners = [ checkRows(), checkCols(), checkDiagonal1(), checkDiagonal2() ];
+        let result = 'continue';
         winners.forEach(winner => {
-            if (winner != null) {
-                return winner
+            if (winner != "nobody") {
+                result = winner;
             }
         })     
+        return result;
 
     }
 
     function checkRows() {
-        let winner = null;
+        let winner = "nobody";
         _board.forEach(row => {
-            const { fullRow, player } = checkRow(row);
+            let { fullRow, firstItem } = checkRow(row);
             if (fullRow) {
-                winner = player;
+                winner = firstItem;
             } 
         })
         return winner;
@@ -59,23 +61,24 @@ function createGameboard(size) {
 
     function checkRow(row) {
         let fullRow = true;
-        const firstItem = row[0];
+        let firstItem = (row[0] != "") ? row[0] : "nobody";
+
         row.forEach(item => {
-            fullRow = item === firstItem;
+            fullRow = fullRow && item === firstItem;
         })
-        return { fullRow, firstItem}
+        return { fullRow, firstItem };
     }
 
     function checkCols() {
-        let winner = null;
+        let winner = "nobody";
         for (let c = 0; c < size; c++) {
             let fullCol = true;
-            const firstItem = _board[0][c]
+            let firstItem = (_board[0][c] != "") ? _board[0][c] : "nobody";
             for (let r = 0; r < size; r++) {
-                fullCol = _board[r][c] === firstItem; 
+                fullCol = fullCol && _board[r][c] === firstItem; 
             }
             if (fullCol) {
-                winner = player;
+                winner = firstItem;
             }
         }
         return winner;
@@ -84,27 +87,27 @@ function createGameboard(size) {
 
     function checkDiagonal1() {
         let fullDiagonal = true;
-        const firstItem = _board[0][0];
+        const firstItem = (_board[0][0] != "") ? _board[0][0] : "nobody";
         for (let i = 0; i < size; i++) {
-            fullDiagonal = _board[i][i] === firstItem;
+            fullDiagonal = fullDiagonal && _board[i][i] === firstItem;
         }
-        const winner = fullDiagonal? firstItem : null;
+        const winner = fullDiagonal? firstItem : "nobody";
         return winner;
     }
 
     function checkDiagonal2() {
         let fullDiagonal = true;
-        const firstItem = _board[ size - 1 ][0];
+        const firstItem = (_board[ size - 1 ][0] != "") ? _board[ size - 1 ][0] : "nobody";
         for (let i = 0; i < size; i++) {
-            fullDiagonal = _board[ size - 1 - i][i] === firstItem;
+            fullDiagonal = fullDiagonal && _board[ size - 1 - i][i] === firstItem;
         }
-        const winner = fullDiagonal? firstItem : null;
-        return winner;
+        const winner = fullDiagonal? firstItem : "nobody";
+        return (winner != "") ? winner : "nobody";
     }
 
 
 
-    return {getBoard, placeSymbol, checkStatus}
+    return { getBoard, placeSymbol, checkStatus };
 }
 
 function createGameController(size, symbols) {
@@ -118,17 +121,27 @@ function createGameController(size, symbols) {
 
 
     function run() {
-        console.log(board.getBoard());
-        let active_i = 0;
-        const active_player = players[active_i]
-        let { symbol, x, y } = active_player.getMove();
-        board.placeSymbol(symbol, x, y);
+        let activeI = 0;
+        let gameStatus = board.checkStatus();
 
-        if (active_i < (players.length - 1)) {
-            active_i ++;
-        } else {
-            active_i = 0;
+        while (gameStatus === "continue") {
+            console.table(board.getBoard());
+            let activePlayer = players[activeI]
+            let { symbol, x, y } = activePlayer.getMove();
+            board.placeSymbol(symbol, x, y);
+
+            if (activeI < (players.length - 1)) {
+                activeI++;
+            } else {
+                activeI = 0;
+            }
+            activePlayer = players[activeI]
+            gameStatus = board.checkStatus();
         }
+
+        console.table(board.getBoard());
+        console.log("Game won by ", gameStatus);
+        
         
     }
 
@@ -136,3 +149,6 @@ function createGameController(size, symbols) {
 
 
 }
+
+const game = createGameController(3, ["X", "O"]);
+game.run();
