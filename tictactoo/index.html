@@ -4,12 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic Tac Too</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <script src="js/player.js"></script>
-  <script>
-    const game=createGameController(3, ["X", "O"]);
+  <div class="msg-container hide">
+        <p id="msg">Winner</p>
+        <button id="new-btn">New Game</button>
+    </div>
+    <main>
+        <h1>Tic Tac Toe</h1>
+        <div class="container">
+            <div class="game">
+                <button class="box" id="0 0"></button>
+                <button class="box" id="1 0"></button>
+                <button class="box" id="2 0"></button>
+                <button class="box" id="0 1"></button>
+                <button class="box" id="1 1"></button>
+                <button class="box" id="2 1"></button>
+                <button class="box" id="2 0"></button>
+                <button class="box" id="2 1"></button>
+                <button class="box" id="2 2"></button>
+            </div>
+        </div>
+        <button id="reset">Reset Game</button>
+    </main>
+
+  <script type="module">
+    import { tictactoe } from "./js/gameObjects.js";
+    const game = tictactoe().createGameController(3, ["X", "O"]);
     game.run();
   </script>
+
 </body>
 </html>
