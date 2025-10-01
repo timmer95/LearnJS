@@ -128,7 +128,9 @@ function createGameController(size, symbols) {
             console.table(board.getBoard());
             let activePlayer = players[activeI]
             let { symbol, x, y } = activePlayer.getMove();
-            board.placeSymbol(symbol, x, y);
+
+            try {
+                board.placeSymbol(symbol, x, y);
 
             if (activeI < (players.length - 1)) {
                 activeI++;
@@ -137,6 +139,10 @@ function createGameController(size, symbols) {
             }
             activePlayer = players[activeI]
             gameStatus = board.checkStatus();
+            } catch (error) {
+                console.log("Error:", error.message)
+            }
+            
         }
 
         console.table(board.getBoard());

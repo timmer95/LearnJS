@@ -1,3 +1,7 @@
+// ------------------------------//
+//      CREATING THE OBJECT      //
+// ------------------------------//
+
 // CONSTRUCTOR FUNCTION 
 // == prototype
 
@@ -17,7 +21,11 @@ function createUser (name) {
   return { name, discordName, getReputation, giveReputation };
 }
 
-// INHERITANCE
+// ------------------------------//
+//           INHERITANCE         //
+// ------------------------------//
+
+// CONSTRUCTOR FUNCTION 
 const Player = function(name, team) {
   this.name = name;
   this.team = team;
@@ -26,7 +34,7 @@ const Player = function(name, team) {
 // the ugly way
 Object.setPrototypeOf(Player.prototype, User.prototype);
 
-// Initialize Child 
+// Initialize Child in constructor F
 function Player(name, team) {
   // Chain constructor with call
   User.call(this, name);
@@ -35,6 +43,8 @@ function Player(name, team) {
   this.team = team;
 }
 
+
+// FACTORY FUNCTION
 function createPlayer (name, level) {
   const { getReputation, giveReputation } = createUser(name);
 
