@@ -30,7 +30,8 @@ body {
     color: red;
     background-color: yellow;
 }
-#reset {
+
+button {
     padding: 1rem;
     font-size: 1.25rem;
     background: #191913;

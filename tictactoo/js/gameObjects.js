@@ -1,4 +1,5 @@
 import { InvalidMoveFormatError, InvalidMoveLocationError } from "./errors.js";
+import { placeSymbolInBox, addFunctionToButton } from "./interactivity.js"
 
 export function tictactoe () {
     function createPlayer(symbol, name) {
@@ -26,11 +27,16 @@ export function tictactoe () {
         }
 
         function placeSymbol(symbol, x, y) {
-            if (_board[y][x] == "") {
+            if (isEmptyLocation( x, y)) {
                 _board[y][x] = symbol
-            } else {
-                throw new InvalidMoveLocationError(`You cannot place ${symbol} at (${x}, ${y}), it is occupied`)
             }
+        }
+
+        function isEmptyLocation( x, y) {
+            if (_board[y][x] != "") {
+                throw new InvalidMoveLocationError(`You cannot place at (${x}, ${y}), it is occupied`)
+            };
+            return true;
         }
 
         function getBoard() {
@@ -135,6 +141,10 @@ export function tictactoe () {
             let userName = prompt(`Player ${symbol}, what is your name?`);
             players.push(createPlayer(symbol, userName));
         });
+         
+        let activeI = 0;
+        addFunctionToButton('continue', runRound);
+        
         
         function evaluateMove(x, y) {
             [x, y].forEach(i => {
@@ -144,18 +154,19 @@ export function tictactoe () {
             })
         }
 
-        function run() {
-            let activeI = 0;
+        function runRound() {
             let gameStatus = board.checkStatus();
 
-            while (gameStatus === "continue") {
+            if (gameStatus === "continue") {
                 console.table(board.getBoard());
 
                 try {
                     let activePlayer = players[activeI]
                     let { symbol, x, y } = activePlayer.getMove();
+                    
                     evaluateMove(x, y);
                     board.placeSymbol(symbol, x, y);
+                    placeSymbolInBox(x, y, symbol);
 
                     if (activeI < (players.length - 1)) {
                         activeI++;
@@ -165,6 +176,10 @@ export function tictactoe () {
                     activePlayer = players[activeI];
                     gameStatus = board.checkStatus();
 
+                    if (gameStatus != "continue") {
+                        console.log("Game won by ", gameStatus);
+                    }
+
                 } catch (error) {
                     // Catch the error 
                     if (!(error instanceof InvalidMoveFormatError) && !(error instanceof InvalidMoveLocationError)) {
@@ -172,15 +187,14 @@ export function tictactoe () {
                         gameStatus = "failed";
                     }
                     console.log("Error:", error.message);
-                    
                 }
+            } else {
+                console.table(board.getBoard());
+                console.log("Game won by ", gameStatus);
             }
-
-            console.table(board.getBoard());
-            console.log("Game won by ", gameStatus);
         }
 
-        return { run };
+        return { runRound };
     };
 
     return { createGameController }
