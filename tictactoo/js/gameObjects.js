@@ -142,7 +142,6 @@ export function tictactoe () {
         });
          
         let activeI = 0;
-        addFunctionToButton('continue', runRound); // here? Where?
         
         
         function evaluateMove(x, y) {
