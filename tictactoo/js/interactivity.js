@@ -13,3 +13,5 @@ export function emptyAllBoxes() {
 export function addFunctionToButton(buttonId, functionToAdd) {
     document.getElementById(buttonId).addEventListener("click", functionToAdd);
 }
+
+

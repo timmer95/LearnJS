@@ -190,8 +190,8 @@ export function tictactoe () {
         }
 
         function reset() {
-            board = createGameboard(size); // background reset
-            emptyAllBoxes();
+            board = createGameboard(size);  // background reset
+            emptyAllBoxes();                // foreground reset
         }
 
         return { runRound, reset };

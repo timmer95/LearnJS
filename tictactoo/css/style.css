@@ -2,10 +2,40 @@
     margin: 0;
     padding: 0;
 }
-body {
-    background-color: lightcyan;
-    text-align: center;
+
+:root {
+    --darkcyan: rgb(1, 34, 34);
+    --lightcyan: rgb(114, 174, 174);
+    --hovercyan: whitesmoke;;
 }
+
+body {
+    background-color: var(--darkcyan);
+    text-align: center;
+    color: var(--lightcyan);
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+
+.game {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: 
+        "playerX game playerO"
+        "continueBtn message resetBtn";
+}
+
+
 .container {
     height: 70vh;
     display: flex;
@@ -24,38 +54,77 @@ body {
     height: 18vmin;
     width: 18vmin;
     border-radius: 1rem;
-    border: none;
+    border: 2px solid var(--lightcyan);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
     font-size: 8vmin;
-    color: red;
-    background-color: yellow;
+    color: var(--lightcyan);
+    background-color: var(--darkcyan);
 }
 
 button {
     padding: 1rem;
     font-size: 1.25rem;
-    background: #191913;
-    color: white;
+    background: var(--lightcyan);
+    color: black;
     border-radius: 1rem;
     border: none;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#resetBtn {
+    grid-area: resetBtn;
+}
+#continueBtn {
+    grid-area: continueBtn;
+}
+.game-area {
+    grid-area: game;
+}
+#title {
+    grid-area: title;
+}
+#playerX {
+    grid-area: playerX;
+}
+#playerO {
+    grid-area: playerO;
+}
+
+#message-field {
+    grid-area: message;
+    padding: 10px;
+    border: 2px solid var(--lightcyan);
+    border-radius: 1rem;
+    background-color: black;
+    color: var(--lightcyan);
+
+    font-family:'Courier New', Courier, monospace;
+    font-style: bold;
+    text-align: left;
+    font-size: 20px;
+
+}
+
 .box:hover {
-    background-color: chocolate;
+    background-color: var(--hovercyan);
 }
-#new-btn {
-    padding: 1rem;
-    font-size: 1.25rem;
-    background: #191913;
-    color: white;
-    border-radius: 1rem;
-    border: none;
-}
-#msg {
-    font-size: 8vmin;
-}
-.msg-container {
-    height: 30vmin;
-}
+
 .hide {
     display: none;
 }
+
+.player-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1rem;
+    border: 2px solid var(--lightcyan);
+    padding: 20px;
+
+}
+
