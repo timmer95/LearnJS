@@ -1,5 +1,5 @@
 import { InvalidMoveFormatError, InvalidMoveLocationError } from "./errors.js";
-import { placeSymbolInBox, addFunctionToButton, emptyAllBoxes } from "./interactivity.js"
+import { placeSymbolInBox, emptyAllBoxes } from "./interactivity.js"
 
 export function tictactoe () {
     function createPlayer(symbol, name) {
@@ -127,8 +127,6 @@ export function tictactoe () {
             return (winner != "") ? winner : "nobody";
         }
 
-
-
         return { getBoard, placeSymbol, checkStatus };
     };
 
@@ -142,7 +140,6 @@ export function tictactoe () {
         });
          
         let activeI = 0;
-        
         
         function evaluateMove(x, y) {
             [x, y].forEach(i => {
