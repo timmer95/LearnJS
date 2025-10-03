@@ -1,12 +1,11 @@
 import { InvalidMoveFormatError, InvalidMoveLocationError } from "./errors.js";
-import { placeSymbolInBox, addFunctionToButton } from "./interactivity.js"
+import { placeSymbolInBox, addFunctionToButton, emptyAllBoxes } from "./interactivity.js"
 
 export function tictactoe () {
     function createPlayer(symbol, name) {
         
         function getMove() {
-            const moveFullString = prompt(`${name}, what will be your next move? (x, y) 0-based index`);
-            // let moveFullString = "1 2"
+            const moveFullString = prompt(`${name}, what will be your next move? (x y) with 0-based index`);
             const [ xString, yString ] = moveFullString.split(" ");
             const x = Number(xString);
             const y = Number(yString);
@@ -19,7 +18,7 @@ export function tictactoe () {
     };
 
     function createGameboard(size) {
-        let _board = Array(size);
+        const _board = Array(size);
         let i = 0
         while (i < size) {
             _board[i] = Array(size).fill('')
@@ -135,7 +134,7 @@ export function tictactoe () {
 
     function createGameController(size, symbols) {
         let board = createGameboard(size);
-        let players = Array()
+        const players = Array()
 
         symbols.forEach(symbol => {
             let userName = prompt(`Player ${symbol}, what is your name?`);
@@ -143,7 +142,7 @@ export function tictactoe () {
         });
          
         let activeI = 0;
-        addFunctionToButton('continue', runRound);
+        addFunctionToButton('continue', runRound); // here? Where?
         
         
         function evaluateMove(x, y) {
@@ -194,7 +193,12 @@ export function tictactoe () {
             }
         }
 
-        return { runRound };
+        function reset() {
+            board = createGameboard(size); // background reset
+            emptyAllBoxes();
+        }
+
+        return { runRound, reset };
     };
 
     return { createGameController }
