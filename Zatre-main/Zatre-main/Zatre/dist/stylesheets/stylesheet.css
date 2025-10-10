@@ -1,0 +1,220 @@
+@charset "UTF-8";
+:root {
+  --tab-dark: #d0d0d0;
+  --tab: #dcdcdc;
+  --tab-light: #f0f0f0;
+  --tab-accent: #f0f0f0;
+  --tile-size: 40px;
+  --board-size-in-columns: 15;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+  gap: 3px;
+}
+
+.tab-control {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+.tab-control .tab-header {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--tab-accent);
+  background-color: var(--tab);
+}
+.tab-control .tab-header .tab-button {
+  flex-grow: 1;
+  font-size: 16px;
+  padding: 5px;
+  transition: 0.4s;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 3px;
+  user-select: none;
+}
+.tab-control .tab-header .tab-button:hover {
+  background-color: var(--tab-dark);
+}
+.tab-control .tab-header .tab-button-active {
+  background-color: var(--tab-light);
+}
+.tab-control .tab-header .tab-indicator {
+  position: absolute;
+  height: 3px;
+  background-color: var(--tab-accent);
+  transition: 0.4s;
+}
+.tab-control .tab-content {
+  display: grid;
+  border: 1px solid var(--tab-accent);
+  border-top: 0px;
+  height: 100%;
+}
+.tab-control .tab-content .tab-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 3px;
+  grid-row: 1;
+  grid-column: 1;
+  opacity: 0;
+  visibility: collapse;
+  transition: 0.4s;
+}
+.tab-control .tab-content .tab-page-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.playing-area {
+  display: grid;
+  grid-template-columns: repeat(var(--board-size-in-columns), auto);
+  grid-auto-flow: row;
+  width: fit-content;
+  gap: 3px;
+}
+.playing-area .square {
+  width: var(--tile-size);
+  height: var(--tile-size);
+}
+.playing-area .square.square-void {
+  background-color: transparent;
+}
+.playing-area .square.square-standard {
+  background-color: var(--tab-dark);
+}
+.playing-area .square.square-multiplier {
+  background-color: var(--tab-light);
+}
+.playing-area .square.square-starter {
+  background-color: salmon;
+}
+.playing-area .square.available {
+  border: 2px solid var(--tab-accent);
+  box-sizing: border-box;
+}
+.playing-area .square .tile {
+  position: relative;
+  width: var(--tile-size);
+  height: var(--tile-size);
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.score-table thead {
+  background-color: var(--tab);
+}
+.score-table thead tr {
+  border-bottom: 1px solid var(--tab-dark);
+}
+.score-table thead tr th {
+  padding: 5px;
+  font-weight: normal;
+  font-size: 12px;
+}
+.score-table tbody tr {
+  border-bottom: 1px solid var(--tab-dark);
+}
+.score-table tbody tr td {
+  padding: 5px;
+  font-weight: normal;
+  font-size: 11px;
+  border-right: 1px solid var(--tab-dark);
+  text-align: center;
+}
+.score-table tbody tr td:empty::after {
+  content: " ";
+  /* Prevents empty row collapse */
+}
+.score-table tbody tr td:last-child {
+  border-right: 0px;
+}
+.score-table tbody tr:nth-child(even) {
+  background: var(--tab);
+}
+.score-table tbody .score-table-row {
+  visibility: collapse;
+}
+.score-table tbody .score-table-row.active {
+  visibility: visible;
+}
+.score-table tbody .score-table-paging {
+  text-align: center;
+}
+.score-table tbody .score-table-paging .navigation {
+  margin: 3px;
+  user-select: none;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 12px;
+}
+.score-table tbody .score-table-paging .navigation.active {
+  text-decoration: underline;
+}
+.score-table tbody .score-table-summary {
+  text-align: right;
+}
+
+.tile-tray {
+  padding: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.tile-tray .tile-slot {
+  width: calc(var(--tile-size) + 6px);
+  height: calc(var(--tile-size) + 6px);
+  padding: 3px;
+  border-radius: 6px;
+  background-color: var(--tab);
+}
+.tile-tray .tile-slot .tile {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  padding: 3px;
+  cursor: grab;
+}
+
+.t1 {
+  background-image: url(.././assets/dice-six-faces-one.svg);
+}
+
+.t2 {
+  background-image: url(.././assets/dice-six-faces-two.svg);
+}
+
+.t3 {
+  background-image: url(.././assets/dice-six-faces-three.svg);
+}
+
+.t4 {
+  background-image: url(.././assets/dice-six-faces-four.svg);
+}
+
+.t5 {
+  background-image: url(.././assets/dice-six-faces-five.svg);
+}
+
+.t6 {
+  background-image: url(.././assets/dice-six-faces-six.svg);
+}
+
+/*# sourceMappingURL=stylesheet.css.map */
