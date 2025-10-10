@@ -12,7 +12,7 @@ export function tictactoe () {
             return { symbol, x, y };
         }
 
-        alert(`Created player ${symbol} for ${name}`)
+        // alert(`Created player ${symbol} for ${name}`)
 
         return {name, getMove};
     };

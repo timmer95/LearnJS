@@ -13,13 +13,13 @@
         <div id="askPlayer1">
             Enter Player 1 Name 
             <input type="text" id="player1" />
-            <button id="next-player">Next...</button>
+            <button id="nextPlayer">Next...</button>
         </div>
 
         <div id="askPlayer2" style="display:none;">
             Enter Player 2 Name 
             <input type="text" id="player2" />
-            <button>Start Game!</button>
+            <button id="startGame">Start Game!</button>
         </div>
 
         <div id="game" style="display:none;">
@@ -49,10 +49,14 @@
             </div>
             <div class="button-container" id="continueBtn"><button id="continue">Continue</button></div>
             <div class="button-container" id="resetBtn"><button id="reset">Reset Game</button></div>
-            <div id="message-field"> Click a field to place symbol </div>
+            <div class="button-container", id="endGameBtn"><button id="endGame">End Game</button></div>
+            <div id="messageField"> Click a field to place symbol </div>
         </div>
+        
         <div id="gameOver" style="display:none;">
             Game Over!
+            <button id="playAgain">Play Again!</button>
+            <button id="resetGame">Reset Game</button>
         </div>
     </main>
 
