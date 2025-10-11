@@ -12,9 +12,13 @@ export function tictactoe () {
             return { symbol, x, y };
         }
 
+        function getSymbol() {
+            return symbol;
+        }
+
         console.log(`Created player ${symbol} for ${name}`)
 
-        return {name, getMove};
+        return {name, getMove, getSymbol};
     };
 
     function createGameboard(size) {
@@ -133,67 +137,49 @@ export function tictactoe () {
     function createGameController() {
         let board = createGameboard(3);
         const players = Array();
-        let activeI = 0;
+        let activeI = -1;
+        let activePlayer;
 
         function addPlayer(symbol, userName) {
             players.push(createPlayer(symbol, userName));
         };    
        
-        
-        function evaluateMove(x, y) {
-            [x, y].forEach(i => {
-                if (!(Number.isInteger(i)) || i < 0 || i > (size - 1) ) {
-                    throw new InvalidMoveFormatError();
-                }
-            })
+        // not needed in the click implementation
+        // function evaluateMove(x, y) {
+        //     [x, y].forEach(i => {
+        //         if (!(Number.isInteger(i)) || i < 0 || i > (size - 1) ) {
+        //             throw new InvalidMoveFormatError();
+        //         }
+        //     })
+        // }
+
+        function placeSymbol(x, y) {
+            const symbol = getActiveSymbol();
+            board.placeSymbol(symbol, x, y);
+            console.log(`Player ${symbol} on ${x} ${y}`);
+            advance();
         }
 
-        function runRound() {
-            let gameStatus = board.checkStatus();
+        function getActiveSymbol() {
+            const symbol = players[activeI].getSymbol();
+            return symbol;
+        }
 
-            if (gameStatus === "continue") {
-                console.table(board.getBoard());
-
-                try {
-                    let activePlayer = players[activeI]
-                    let { symbol, x, y } = activePlayer.getMove();
-                    
-                    evaluateMove(x, y);
-                    board.placeSymbol(symbol, x, y);
-                    placeSymbolInBox(x, y, symbol);
-
-                    if (activeI < (players.length - 1)) {
-                        activeI++;
-                    } else {
-                        activeI = 0;
-                    }
-                    activePlayer = players[activeI];
-                    gameStatus = board.checkStatus();
-
-                    if (gameStatus != "continue") {
-                        console.log("Game won by ", gameStatus);
-                    }
-
-                } catch (error) {
-                    // Catch the error 
-                    if (!(error instanceof InvalidMoveFormatError) && !(error instanceof InvalidMoveLocationError)) {
-                        // Stop the game if an unknown error occur
-                        gameStatus = "failed";
-                    }
-                    console.log("Error:", error.message);
+        function advance() {
+            if (board.checkStatus() === "continue") {
+                if (activeI < (players.length - 1)) {
+                    activeI++;
+                } else {
+                    activeI = 0;
                 }
+                activePlayer = players[activeI];
+                console.log(`Player ${getActiveSymbol()}, pick your box!`);
             } else {
-                console.table(board.getBoard());
-                console.log("Game won by ", gameStatus);
+                console.log('Game Over!');
             }
         }
 
-        function reset() {
-            board = createGameboard(size);  // background reset
-            emptyAllBoxes();                // foreground reset
-        }
-
-        return {addPlayer, runRound, reset };
+        return {addPlayer, placeSymbol, getActiveSymbol, advance };
     };
 
     return { createGameController }
