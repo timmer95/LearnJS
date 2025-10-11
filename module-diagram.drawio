@@ -1,6 +1,6 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0" version="28.2.5">
   <diagram name="Page-1" id="JcFpSaDHImAGkCxSXAnx">
-    <mxGraphModel dx="3490" dy="2550" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="#000000" math="0" shadow="0">
+    <mxGraphModel dx="3101" dy="2303" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -237,8 +237,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="ol2-cge1ZTntNYI8VxrW-47" value="&lt;div style=&quot;line-height: 90%;&quot;&gt;&lt;font style=&quot;line-height: 90%; font-size: 10px;&quot;&gt;&quot;things&quot;, like Player,&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;line-height: 90%; font-size: 10px;&quot;&gt;Bag, Board,&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;font-size: 10px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;etc...&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" parent="1" vertex="1">
-          <mxGeometry x="-755" y="-1153" width="108" height="52" as="geometry" />
+        <mxCell id="ol2-cge1ZTntNYI8VxrW-47" value="&lt;div style=&quot;line-height: 90%;&quot;&gt;&lt;font style=&quot;line-height: 90%; font-size: 10px;&quot;&gt;functional things like Player,&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;line-height: 90%; font-size: 10px;&quot;&gt;Bag, Board,&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;font-size: 10px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;etc...&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" parent="1" vertex="1">
+          <mxGeometry x="-776" y="-1152" width="151" height="51" as="geometry" />
         </mxCell>
         <mxCell id="ol2-cge1ZTntNYI8VxrW-55" value="class.ts" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=#fad9d5;strokeColor=#ae4132;glass=0;sketch=1;curveFitting=1;jiggle=2;fillStyle=solid;" parent="1" vertex="1">
           <mxGeometry x="-818" y="-906" width="66" height="42" as="geometry" />
@@ -454,8 +454,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="WbHGCkx0RvkUPzN5Ozbf-3" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;visuals&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" parent="1" vertex="1">
-          <mxGeometry x="-885" y="-1137" width="46" height="36" as="geometry" />
+        <mxCell id="WbHGCkx0RvkUPzN5Ozbf-3" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;visuals, interactive frontend things&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" parent="1" vertex="1">
+          <mxGeometry x="-950" y="-1137" width="177" height="36" as="geometry" />
         </mxCell>
         <mxCell id="WbHGCkx0RvkUPzN5Ozbf-12" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.412;entryY=0.985;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=14;endArrow=open;endSize=14;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="ol2-cge1ZTntNYI8VxrW-140" target="WbHGCkx0RvkUPzN5Ozbf-11" edge="1">
           <mxGeometry relative="1" as="geometry" />

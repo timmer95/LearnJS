@@ -1,9 +1,16 @@
-import { tictactoe } from "./gameObjects.js";
-import {addFunctionToButton } from "./interactivity.js"
+import { tictactoe } from "./core/gameObjects.js";
+import {addFunctionToButton } from './controls/interactiveFunctions.js'
+import { createEventBus } from './eventing/EventBus.js'
+import { createPlayerPane } from "./controls/playerPane.js";
 
 
 const states = ['askPlayer1', 'askPlayer2', 'game', 'gameOver'];
 let currentStateIndex = 0;
+
+const eventBus = createEventBus();
+const game = tictactoe().createGameController();
+const playerX = createPlayerPane(eventBus, 'playerX', game, 'X');
+const playerO = createPlayerPane(eventBus, 'playerO', game, 'O');
 
 function showState(stateName) {
   states.forEach(id => {
@@ -31,10 +38,9 @@ function next() {
 
 
 window.onload = function() {
+    console.log('START')
     // Initialize
     showState(states[currentStateIndex]);
-
-    const game = tictactoe().createGameController(3, ["X", "O"]);
 
     // State transitions
     addFunctionToButton("nextPlayer", next);

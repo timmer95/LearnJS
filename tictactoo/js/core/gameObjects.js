@@ -1,5 +1,5 @@
-import { InvalidMoveFormatError, InvalidMoveLocationError } from "./errors.js";
-import { placeSymbolInBox, emptyAllBoxes } from "./interactivity.js"
+import { InvalidMoveFormatError, InvalidMoveLocationError } from "../errors.js";
+import { placeSymbolInBox, emptyAllBoxes } from "../controls/interactiveFunctions.js"
 
 export function tictactoe () {
     function createPlayer(symbol, name) {
@@ -12,7 +12,7 @@ export function tictactoe () {
             return { symbol, x, y };
         }
 
-        // alert(`Created player ${symbol} for ${name}`)
+        console.log(`Created player ${symbol} for ${name}`)
 
         return {name, getMove};
     };
@@ -130,16 +130,15 @@ export function tictactoe () {
         return { getBoard, placeSymbol, checkStatus };
     };
 
-    function createGameController(size, symbols) {
-        let board = createGameboard(size);
-        const players = Array()
-
-        symbols.forEach(symbol => {
-            let userName = prompt(`Player ${symbol}, what is your name?`);
-            players.push(createPlayer(symbol, userName));
-        });
-         
+    function createGameController() {
+        let board = createGameboard(3);
+        const players = Array();
         let activeI = 0;
+
+        function addPlayer(symbol, userName) {
+            players.push(createPlayer(symbol, userName));
+        };    
+       
         
         function evaluateMove(x, y) {
             [x, y].forEach(i => {
@@ -194,7 +193,7 @@ export function tictactoe () {
             emptyAllBoxes();                // foreground reset
         }
 
-        return { runRound, reset };
+        return {addPlayer, runRound, reset };
     };
 
     return { createGameController }

@@ -1,0 +1,46 @@
+{
+  event1: { 1: func1, 2: func2 },
+  event2: { 3: func3 }
+}
+The events event1 and event2 can be of any type. In most cases it makes sense to use simple strings.
+The subscribers func1, func2 and func3 are simple Javascript functions.
+func1 and func2 are subscribers, subscribed to events of type event1.
+func3 is a subscriber, subscribed to events of type event2.
+
+The IDs 1, 2 and 3 will be used later to unsubscribe subscribers.
+
+const subscriptions = { }
+let nextUniqueId = 0
+function subscribe(eventType, callback) {
+  nextUniqueId ++
+  // create new entry for eventType
+  if(!subscriptions[eventType])
+    subscriptions[eventType] = { }
+  // the callback is registered
+  subscriptions[eventType][id] = callback
+  return {
+    unsubscribe: () => { // the only thing possible to do with the subscription itself
+      delete subscriptions[eventType][id]
+      if(Object.keys(subscriptions[eventType]).length === 0)
+        delete subscriptions[eventType]
+    }
+  }
+}
+
+function publish(eventType, arg) {
+  if(!subscriptions[eventType])
+    return
+  Object.keys(subscriptions[eventType])
+        .forEach(id => subscriptions[eventType][id](arg))
+}
+
+subscribe: couple event and listeners
+publish/emit/invoke: activate the listeners when event happens with provided arguments
+
+hanlder/listener?
+
+
+which events belong in an EventBus? each button? or only the communcation between the visuals and the game status? 
+
+When to use addEventListener, or should it be possible to avoid that when implementing EventBus correctly?
+Or is it a solid part of eventBus? 
