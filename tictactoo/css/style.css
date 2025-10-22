@@ -12,36 +12,54 @@
 body {
     background-color: var(--darkcyan);
     text-align: center;
+    justify-items: center;
     color: var(--lightcyan);
     padding: 20px;
     font-family: 'Courier New', Courier, monospace;
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 4vw;
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 2.5vw;
 }
 
+.padded {
+    padding: 20px;
+}
 
-.game {
+#askPlayer1, #askPlayer2 {
+    height: auto;
+    width: 100%;
+}
+
+.game-field {
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 20vw 50vw 20vw;
     grid-template-rows: 1fr auto;
     grid-template-areas: 
         "playerX game playerO"
-        "continueBtn message resetBtn";
+        "message message playBtn";
 }
 
+#playerX {
+    grid-area: playerX;
+}
+#playerO {
+    grid-area: playerO;
+}
 
-.container {
+.box-container {
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    grid-area: game;
 }
+
 .game {
     height: 60vmin;
     width: 60vmin;
@@ -50,9 +68,31 @@ h2 {
     gap: 1.5vmin;
     justify-content: center;
 }
+
+#playButtons {
+    grid-area: playBtn;
+}
+
+
+#messageField {
+    grid-area: message;
+    padding: 10px;
+    border-radius: 1rem;
+    background-color: black;
+    color: var(--hovercyan);
+
+    font-family: 'Courier New', Courier, monospace;
+    font-style: bold;
+    text-align: left;
+    font-size: 20px;
+    margin: 20px;
+
+}
+
+
 .box {
-    height: 18vmin;
-    width: 18vmin;
+    height: 16vmin;
+    width: 16vmin;
     border-radius: 1rem;
     border: 2px solid var(--lightcyan);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
@@ -70,48 +110,28 @@ button {
     border: none;
 }
 
+button:hover {
+    background: white;
+    transition: 0.3s;
+}
+
+button:disabled {
+    background: gray;
+}
+
 .button-container {
     display: flex;
     justify-content: center;
     padding: 20px;
-}
-
-#resetBtn {
-    grid-area: resetBtn;
-}
-#continueBtn {
-    grid-area: continueBtn;
-}
-.game-area {
-    grid-area: game;
-}
-#title {
-    grid-area: title;
-}
-#playerX {
-    grid-area: playerX;
-}
-#playerO {
-    grid-area: playerO;
-}
-
-#message-field {
-    grid-area: message;
-    padding: 10px;
-    border: 2px solid var(--lightcyan);
-    border-radius: 1rem;
-    background-color: black;
-    color: var(--lightcyan);
-
-    font-family:'Courier New', Courier, monospace;
-    font-style: bold;
-    text-align: left;
-    font-size: 20px;
-
+    gap: 20px;
 }
 
 .box:hover {
     background-color: var(--hovercyan);
+}
+
+.box:disabled:hover {
+    background-color:gray;
 }
 
 .hide {
@@ -124,7 +144,6 @@ button {
     justify-content: space-between;
     border-radius: 1rem;
     border: 2px solid var(--lightcyan);
-    padding: 20px;
-
+    padding: 10px;
 }
 

@@ -11,52 +11,60 @@
         <h1 id="title">Tic Tac Toe</h1>
 
         <div id="askPlayer1">
-            Enter Player X Name 
-            <input type="text" id="playerX" />
+            <div class="padded">
+                Enter Player X Name
+                <input type="text" id="playerXName" />
+            </div>
             <button id="nextPlayer">Next...</button>
         </div>
 
         <div id="askPlayer2" style="display:none;">
-            Enter Player O Name 
-            <input type="text" id="playerO" />
+            <div class="padded">
+                Enter Player 0 Name
+                <input type="text" id="playerOName" />
+            </div>
             <button id="startGame">Start Game!</button>
         </div>
 
-        <div id="game" style="display:none;">
-
+        <div id="game" style="display:none;" class="game-field">
             <div class="player-field" id="playerX">
                 <h2>Player X</h2>
                 <h1 id="nameX"></h1>
             </div>
-            <div class="game-area">
-                <div class="container">
-                    <div class="game">
-                        <button class="box" id="0 0"></button>
-                        <button class="box" id="1 0"></button>
-                        <button class="box" id="2 0"></button>
-                        <button class="box" id="0 1"></button>
-                        <button class="box" id="1 1"></button>
-                        <button class="box" id="2 1"></button>
-                        <button class="box" id="0 2"></button>
-                        <button class="box" id="1 2"></button>
-                        <button class="box" id="2 2"></button>
-                    </div>
-                </div>
-            </div>
+
             <div class="player-field" id="playerO">
                 <h2>Player O</h2>
                 <h1 id="nameO"></h1>
             </div>
-            <div class="button-container" id="continueBtn"><button id="continue">Continue</button></div>
-            <div class="button-container" id="resetBtn"><button id="reset">Reset Game</button></div>
-            <div class="button-container", id="endGameBtn"><button id="endGame">End Game</button></div>
+
+            <div class="box-container">
+                <div class="game">
+                    <button class="box" id="0 0"></button>
+                    <button class="box" id="1 0"></button>
+                    <button class="box" id="2 0"></button>
+                    <button class="box" id="0 1"></button>
+                    <button class="box" id="1 1"></button>
+                    <button class="box" id="2 1"></button>
+                    <button class="box" id="0 2"></button>
+                    <button class="box" id="1 2"></button>
+                    <button class="box" id="2 2"></button>
+                </div>
+            </div>
+            
+            <div class="button-container" id="playButtons">
+                <button id="replayGame">Replay Game</button>
+                <button id="endGame">End Game</button>
+            </div>
             <div id="messageField"> Click a field to place symbol </div>
+            
         </div>
         
         <div id="gameOver" style="display:none;">
             Game Over!
-            <button id="playAgain">Play Again!</button>
-            <button id="resetGame">Reset Game</button>
+            <div class="button-container">
+                <button id="playAgain">Play Again!</button>
+                <button id="resetGame">Reset Game</button>
+            </div>
         </div>
     </main>
 

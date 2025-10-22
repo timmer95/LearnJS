@@ -1,4 +1,4 @@
-export class SentSymbolEvent {
+export class PlacedSymbolEvent {
     constructor(symbol) { 
         this.symbol = symbol;
     }

@@ -1,27 +1,6 @@
-import { InvalidMoveFormatError, InvalidMoveLocationError } from "../errors.js";
-import { placeSymbolInBox, emptyAllBoxes } from "../controls/interactiveFunctions.js"
+import { InvalidMoveLocationError } from "../errors.js";
 
-export function tictactoe () {
-    function createPlayer(symbol, name) {
-        
-        function getMove() {
-            const moveFullString = prompt(`${name}, what will be your next move? (x y) with 0-based index`);
-            const [ xString, yString ] = moveFullString.split(" ");
-            const x = Number(xString);
-            const y = Number(yString);
-            return { symbol, x, y };
-        }
-
-        function getSymbol() {
-            return symbol;
-        }
-
-        console.log(`Created player ${symbol} for ${name}`)
-
-        return {name, getMove, getSymbol};
-    };
-
-    function createGameboard(size) {
+export function createGameboard(size) {
         const _board = Array(size);
         let i = 0
         while (i < size) {
@@ -37,7 +16,7 @@ export function tictactoe () {
 
         function isEmptyLocation( x, y) {
             if (_board[y][x] != "") {
-                throw new InvalidMoveLocationError(`You cannot place at (${x}, ${y}), it is occupied`)
+                throw new InvalidMoveLocationError(`You cannot place at (${x}, ${y}), it is occupied`);
             };
             return true;
         }
@@ -48,15 +27,12 @@ export function tictactoe () {
 
         function checkStatus() {
             const winners = [ checkRows(), checkCols(), checkDiagonal1(), checkDiagonal2() ];
-            let result = 'continue';
+            let result = 'nobody';
             winners.forEach(winner => {
                 if (winner != "nobody") {
                     result = winner;
                 }
-            })
-            if (isBoardFull()) {
-                result = "nobody"
-            }     
+            })    
             return result;
 
         }
@@ -131,56 +107,5 @@ export function tictactoe () {
             return (winner != "") ? winner : "nobody";
         }
 
-        return { getBoard, placeSymbol, checkStatus };
+        return { getBoard, placeSymbol, checkStatus, isBoardFull };
     };
-
-    function createGameController() {
-        let board = createGameboard(3);
-        const players = Array();
-        let activeI = -1;
-        let activePlayer;
-
-        function addPlayer(symbol, userName) {
-            players.push(createPlayer(symbol, userName));
-        };    
-       
-        // not needed in the click implementation
-        // function evaluateMove(x, y) {
-        //     [x, y].forEach(i => {
-        //         if (!(Number.isInteger(i)) || i < 0 || i > (size - 1) ) {
-        //             throw new InvalidMoveFormatError();
-        //         }
-        //     })
-        // }
-
-        function placeSymbol(x, y) {
-            const symbol = getActiveSymbol();
-            board.placeSymbol(symbol, x, y);
-            console.log(`Player ${symbol} on ${x} ${y}`);
-            advance();
-        }
-
-        function getActiveSymbol() {
-            const symbol = players[activeI].getSymbol();
-            return symbol;
-        }
-
-        function advance() {
-            if (board.checkStatus() === "continue") {
-                if (activeI < (players.length - 1)) {
-                    activeI++;
-                } else {
-                    activeI = 0;
-                }
-                activePlayer = players[activeI];
-                console.log(`Player ${getActiveSymbol()}, pick your box!`);
-            } else {
-                console.log('Game Over!');
-            }
-        }
-
-        return {addPlayer, placeSymbol, getActiveSymbol, advance };
-    };
-
-    return { createGameController }
-}

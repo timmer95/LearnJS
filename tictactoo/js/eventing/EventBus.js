@@ -27,6 +27,7 @@ export function createEventBus() {
         if (!(eventName in subscriptions)) {
             return
         }
+        console.log(`Publish event ${eventName}`)
         const listeners = subscriptions[eventName];
         for (const id in listeners) {
             listeners[id](eventArgs);
